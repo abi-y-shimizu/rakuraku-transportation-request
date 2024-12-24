@@ -1,5 +1,3 @@
-import { expect } from "@playwright/test";
-
 const DESKNETS_URL = process.env.DESKNETS_URL;
 const DESKNETS_USER = process.env.DESKNETS_USER;
 const DESKNETS_PASSWORD = process.env.DESKNETS_PASSWORD;
@@ -129,6 +127,7 @@ export async function getOfficeDayFromDesknets({ page }) {
         return [sortedOfficeDateList, sortedRemoteDateList, sortedVacationDateList];
     }catch(error){
         console.error('getOfficeDayFromDesknets Error:', error);
+        throw error;
     }finally{
         console.log('==== getOfficeDayFromDesknets End ====');
     }

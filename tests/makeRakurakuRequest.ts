@@ -123,6 +123,7 @@ export async function makeRakurakuRequest({ page }, officeDates) {
         console.log('==== 一時保存完了 ====');
     }catch(error){
         console.error('makeRakurakuRequest Error:', error);
+        throw error;
     }finally{
         console.log('==== makeRakurakuRequest End ====');
     }
