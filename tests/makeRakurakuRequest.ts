@@ -8,6 +8,7 @@ export async function makeRakurakuRequest({ page }, officeDates) {
     /*
         楽々清算にログインし、引数のofficeDatesをもとにマイパターンの申請を作成し一時保存する
         現在より未来の日付の明細を追加しても問題なく動作する
+        前回までの自動保存データが残っていた場合は削除したのちに申請を作成する
     */
     try{
         console.log('==== makeRakurakuRequest Start ====');
@@ -49,7 +50,19 @@ export async function makeRakurakuRequest({ page }, officeDates) {
         await popup.waitForLoadState('domcontentloaded');
         console.log('==== 交通費精算画面遷移成功 ====');
 
-        // TODO: 事前に明細があった場合は削除する
+        await popup.waitForSelector("div#denpyoFixedArea");
+        // 前回までの自動保存データが残っている場合は削除する
+        const deleteAutoSaveATag = await popup.$(
+            "div#autoSaveMsg > table > tbody > tr > td.banner__message > a.e2e-delete-autosave-btn"
+        );
+        if(deleteAutoSaveATag){
+            await deleteAutoSaveATag.click();
+            await popup.waitForSelector("div#denpyoFixedArea");
+            console.log('==== 前回までの自動保存データが残っていたため削除完了 ====');
+        }else{
+            console.log('==== 前回までの自動保存データはありません ====');
+        }
+
         for(const date of officeDates){
             await popup.waitForSelector("div#denpyoFixedArea");
             const denpyoFixedAreaButtons = await popup.$$(
