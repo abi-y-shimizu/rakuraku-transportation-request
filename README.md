@@ -89,6 +89,7 @@ npx playwright install
     - プロジェクト直下に.envファイルを作成
     - 環境変数を記載
         - [環境変数](#環境変数)を参照
+- slack通知したい場合は[slack通知導入方法](#slack通知導入方法)を参照
 - テスト実行
 ```shell
 npx playwright test
@@ -129,6 +130,7 @@ npx playwright test
         - arn:aws:lambda:ap-northeast-1:764866452798:layer:chrome-aws-lambda:49
         - 追加を押下し正常に追加されることを確認
     - レイヤーについて知りたい人は[レイヤーの説明](#レイヤーの説明)を参照
+- [slack通知導入方法](#slack通知導入方法)を参照してチャンネルにアプリを追加
 - コードのデプロイ
     - 関数のコードエディタ画面を開く
     - index.mjs を[./lambda](./lambda)配下のindex.mjsに書き換え
