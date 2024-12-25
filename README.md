@@ -173,3 +173,12 @@ npx playwright test
 1. arn:aws:lambda:ap-northeast-1:764866452798:layer:chrome-aws-lambda:49
     * 下記サイトから拝借、playwright chromium用
         * https://github.com/shelfio/chrome-aws-lambda-layer
+
+## slack通知導入方法
+
+- 送信したいチャンネルにアプリを導入する必要がある
+    - チャンネルの詳細を開く
+    - インテグレーションよりアプリを追加する
+    - vulnerability-botを追加
+- 注意
+    - 残念ながらDMにはアプリを追加できないようなので、自分1人だけの通知用チャンネルとか作るといいかも
