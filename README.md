@@ -166,10 +166,10 @@ npx playwright test
 ### レイヤーの説明
 
 1. lambda-layer-playwright.zip
-  * その他ライブラリ用
-  * 3とplaywrightらへんで一部被っている気がするが、とりあえず動くのでOKとしている
+    * その他ライブラリ用
+    * 3とplaywrightらへんで一部被っている気がするが、とりあえず動くのでOKとしている
 1. lambda-layer-slack.zip
-  * slack web api用
+    * slack web api用
 1. arn:aws:lambda:ap-northeast-1:764866452798:layer:chrome-aws-lambda:49
-  * 下記サイトから拝借、playwright chromium用
-    * https://github.com/shelfio/chrome-aws-lambda-layer
+    * 下記サイトから拝借、playwright chromium用
+        * https://github.com/shelfio/chrome-aws-lambda-layer
