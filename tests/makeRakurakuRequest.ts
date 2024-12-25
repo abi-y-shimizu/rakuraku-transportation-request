@@ -20,7 +20,7 @@ export async function makeRakurakuRequest({ page }, officeDates) {
         loginPasswordInputElement.fill(RAKURAKU_PASSWORD);
         const loginButtonElement = await page.$("input#submitBtn");
         await loginButtonElement.click();
-        await page.waitForLoadState("domcontentloaded");
+        await page.waitForLoadState("load");
         console.log('==== ログイン完了 ====');
 
         // フレームのロードを待機
@@ -47,7 +47,7 @@ export async function makeRakurakuRequest({ page }, officeDates) {
             page.waitForEvent('popup'),
             traficRequestButton!.click(),
         ]);
-        await popup.waitForLoadState('domcontentloaded');
+        await popup.waitForLoadState('load');
         console.log('==== 交通費精算画面遷移成功 ====');
 
         await popup.waitForSelector("div#denpyoFixedArea");
@@ -73,7 +73,7 @@ export async function makeRakurakuRequest({ page }, officeDates) {
                 popup.waitForEvent('popup'),
                 myPatternButton!.click(),
             ]);
-            await myPatternPopup.waitForLoadState("domcontentloaded");
+            await myPatternPopup.waitForLoadState("load");
             console.log('==== マイパターン一覧画面遷移成功 ====');
     
             // マイパターンは全チェックする
@@ -84,7 +84,7 @@ export async function makeRakurakuRequest({ page }, officeDates) {
                 "div#d_footer > div > button"
             );
             await nextButton.click();
-            await myPatternPopup.waitForLoadState("domcontentloaded");
+            await myPatternPopup.waitForLoadState("load");
             console.log('==== 日付選択画面遷移成功 ====');
     
             // 日付を入力
@@ -110,8 +110,10 @@ export async function makeRakurakuRequest({ page }, officeDates) {
             const addDetailsButton = await myPatternPopup.$(
                 "div.denpyo__footer > div > button.button.button--l.button-primary.accesskeyFix.kakutei"
             );
+            const closePromise = myPatternPopup.waitForEvent('close');
             await addDetailsButton.click();
-            await popup.waitForLoadState("domcontentloaded");
+            await closePromise;
+            await popup.waitForLoadState("load");
             console.log(`==== ${date} 明細追加完了 ====`)
         }
 
