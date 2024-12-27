@@ -34,6 +34,7 @@ export async function getOfficeDayFromDesknets({ page }) {
 
         // 表の表示まで待機
         await page.waitForSelector("div.cal-month-body > div.cal-month-week");
+        await page.waitForSelector("span.neo-time");
         const neoTimeSpan = await page.$(
             // "div.portal-content-1011 > div.portal-content-body > div.portal-cal > div.portal-cal-date-header > div.cal-date > span"
             "span.neo-time"
