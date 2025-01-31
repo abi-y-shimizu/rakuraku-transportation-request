@@ -146,7 +146,7 @@ export async function getOfficeDayFromDesknets() {
 };
 
 function extractYearMonth(dateString) {
-    const regex = /(\d{4})年(\d{2})月/;
+    const regex = /(\d{4})年(\d{1,2})月/;
     const match = dateString.match(regex);
     const year = match[1];
     const month = match[2];
